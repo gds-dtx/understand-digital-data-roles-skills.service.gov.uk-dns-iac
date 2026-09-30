@@ -23,6 +23,14 @@ resource "aws_route53_record" "security_txt-prod" {
   ]
 }
 
+resource "aws_route53_record" "google_verification" {
+  zone_id = aws_route53_zone.udigitaldatarsservicegovuk.zone_id
+  name    = "u44d6rnpzuhs"
+  type    = "CNAME"
+  ttl     = local.standard_ttl
+  records = ["gv-w6s2zxfnv2fj2h.dv.googlehosted.com."]
+}
+
 module "aws-r53-parked-domain" {
   source            = "github.com/co-cddo/aws-route53-parked-govuk-domain//terraform?ref=5e85556ce417cd335c440fd1e7079bd331f443d5"
   zone_id           = aws_route53_zone.udigitaldatarsservicegovuk.zone_id
